@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="26759b91-9ec3-4c41-8b6d-5aac8b841ed9" name="SymfonyProjet1" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\bucket-list" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
