@@ -16,6 +16,8 @@
         {% block body %}
             {% include("inc/_body.html.twig") %}
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% include("inc/_js.html.twig") %}
+        {% endblock %}
     </body>
 </html>
