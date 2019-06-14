@@ -13,7 +13,7 @@ class IdeaFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('en_US');
+        $faker = Factory::create('en-US');
 
         for ($i =1; $i<=100; $i++) {
             $idea = new Idea();
