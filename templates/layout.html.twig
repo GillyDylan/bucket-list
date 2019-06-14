@@ -14,7 +14,16 @@
     </head>
     <body>
         {% block body %}
-            {% include("inc/_body.html.twig") %}
+            <header>
+                {% include('inc/_header.html.twig') %}
+            </header>
+            <main>
+                {% block content %}
+                {% endblock %}
+            </main>
+            <footer class="align-text-bottom">
+                {% include('inc/_footer.html.twig') %}
+            </footer>
         {% endblock %}
         {% block javascripts %}
             {% include("inc/_js.html.twig") %}
