@@ -7,12 +7,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LayoutController extends Controller
+class MainController extends Controller
 {
     /**
-     * @Route("/", name="layout")
+     * @Route("/", name="main_layout")
      */
-    public function layout(){
+    public function home(){
         return $this->render("layout.html.twig");
     }
 }
