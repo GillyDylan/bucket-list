@@ -1,8 +1,12 @@
+{% extends('layout.html.twig') %}
+
 {% block content %}
 
-{% endblock %}
-
-{% block body %}
+<div class="container">
+    <h1>{{ idea.title }}</h1>
+    <p class="small">Ecrit le {{ idea.dateCreated | date("d/m/Y H:i") }}</p>
+    <p>{{ idea.description | raw }}</p>
+</div>
 
 {% endblock %}
 
