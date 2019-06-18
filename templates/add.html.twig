@@ -4,5 +4,25 @@
 
     <h1>Add new idea :</h1>
 
+    {{ form_start(ideaForm) }}
+
+    <div class = "group">
+        {{ form_label(ideaForm.title) }}
+        {{ form_widget(ideaForm.title) }}
+        {{ form_errors(ideaForm.title) }}
+    </div>
+    <div class = "group">
+        {{ form_label(ideaForm.description) }}
+        {{ form_widget(ideaForm.description) }}
+        {{ form_errors(ideaForm.description) }}
+    </div>
+    <div class = "group">
+        {{ form_label(ideaForm.author) }}
+        {{ form_widget(ideaForm.author) }}
+        {{ form_errors(ideaForm.author) }}
+    </div>
+    <button type="submit">Submit</button>
+    {{ form_end(ideaForm) }}
+
 {% endblock %}
 

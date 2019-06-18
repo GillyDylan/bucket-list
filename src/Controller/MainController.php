@@ -5,8 +5,10 @@ namespace App\Controller;
 
 
 use App\Entity\Idea;
+use App\Form\IdeaType;
+use DateTime;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,14 +31,23 @@ class MainController extends Controller
     /**
      * @Route("/add", name="add")
      */
-    public function add(Request $request){
+    public function add(ObjectManager $manager, Request $request){
         $idea = new Idea();
-        $ideaForm = $this->createForm(Idea::class, $idea);
+
+        $ideaForm = $this->createForm(IdeaType::class, $idea);
+
         $ideaForm->handleRequest($request);
         if($ideaForm->isSubmitted() && $ideaForm->isValid()){
-            $this->addFlash("succes", "Idea successfully added !");
-            $this->$this->redirectToRoute("test");
+            $idea->setDateCreated(new DateTime());
+            $idea->setIdPublished(true);
+            $manager->persist($idea);
+            $manager->flush();
+            $this->addFlash("success","Idea successfully added!");
+            return $this->redirectToRoute("detail", ["id" => $idea->getId() ]);
         }
-        return $this->render("add.html.twig");
+
+        return $this->render("add.html.twig", [
+            "ideaForm" => $ideaForm->createView()
+            ]);
     }
 }

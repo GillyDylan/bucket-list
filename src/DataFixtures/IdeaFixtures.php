@@ -4,6 +4,7 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\Category;
 use App\Entity\Idea;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -15,7 +16,11 @@ class IdeaFixtures extends Fixture
     {
         $faker = Factory::create('en-US');
 
-        for ($i =1; $i<=100; $i++) {
+        $categoryRepo = $manager->getRepository(Category::class);
+
+
+        for ($i =1; $i<=100; $i++)
+        {
             $idea = new Idea();
             $idea->setTitle($faker->sentence(5));
             $description = '<p>'.join($faker->paragraphs(3), '</p><p>').'</p>';
@@ -23,6 +28,8 @@ class IdeaFixtures extends Fixture
             $idea->setAuthor($faker->name);
             $idea->setIdPublished($faker->boolean);
             $idea->setDateCreated($faker->dateTimeBetween('-6 months'));
+
+            $idea->setCategory($categoryRepo->find(rand(1,5)));
 
             $manager->persist($idea);
         }

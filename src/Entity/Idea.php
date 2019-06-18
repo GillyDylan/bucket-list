@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -19,6 +20,11 @@ class Idea
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Assert\NotBlank(message="Title is requiered")
+     * @Assert\Length(min="5", max="25",
+     *     minMessage="{{ limit }} charaters minimum",
+     *     maxMessage="{{ limit }} charaters maximum"
+     * )
      */
     private $title;
 
@@ -41,6 +47,11 @@ class Idea
      * @ORM\Column(type="datetime")
      */
     private $dateCreated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="ideas")
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -103,6 +114,18 @@ class Idea
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
