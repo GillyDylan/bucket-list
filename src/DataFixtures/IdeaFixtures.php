@@ -17,6 +17,7 @@ class IdeaFixtures extends Fixture
         $faker = Factory::create('en-US');
 
         $categoryRepo = $manager->getRepository(Category::class);
+        $categories = $categoryRepo->findAll();
 
 
         for ($i =1; $i<=100; $i++)
@@ -28,9 +29,8 @@ class IdeaFixtures extends Fixture
             $idea->setAuthor($faker->name);
             $idea->setIdPublished($faker->boolean);
             $idea->setDateCreated($faker->dateTimeBetween('-6 months'));
-
-            $idea->setCategory($categoryRepo->find(rand(1,5)));
-
+            $id = rand(0,4);
+            $idea->setCategory($categories[$id]);
             $manager->persist($idea);
         }
         $manager->flush();

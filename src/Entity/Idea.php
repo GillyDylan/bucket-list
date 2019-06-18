@@ -126,7 +126,7 @@ class Idea
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
+        $category->addIdea($this);
         return $this;
     }
 }
