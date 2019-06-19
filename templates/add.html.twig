@@ -21,6 +21,11 @@
         {{ form_widget(ideaForm.author) }}
         {{ form_errors(ideaForm.author) }}
     </div>
+    <div class = "group">
+        {{ form_label(ideaForm.category) }}
+        {{ form_widget(ideaForm.category) }}
+        {{ form_errors(ideaForm.category) }}
+    </div>
     <button type="submit">Submit</button>
     {{ form_end(ideaForm) }}
 

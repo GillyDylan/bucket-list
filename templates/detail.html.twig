@@ -4,8 +4,9 @@
 
 <div class="container">
     <h1>{{ idea.title }}</h1>
-    <p class="small">Ecrit le {{ idea.dateCreated | date("d/m/Y H:i") }}</p>
+    <p class="small">Writen the {{ idea.dateCreated | date("d/m/Y H:i") }}</p>
     <p>{{ idea.description | raw }}</p>
+    <p>Category :{{ idea.category.name | raw }}</p>
 </div>
 
 {% endblock %}
